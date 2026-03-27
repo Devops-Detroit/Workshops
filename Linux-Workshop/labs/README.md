@@ -4,5 +4,5 @@ All of the labs for the workshop are below.
 
 ## Labs
 
-- [Lab 1 - Beginner: Navigating Linux](week%201/lab1%20-%20Beginner:%20Navigating%20Linux)
-- [Lab 2 - Intermediate: Setup Web Server](week%201/lab2%20-%20Intermediate:%20Setup%20Web%20Server)
+- [Lab 1 - Beginner](week1/lab1_Beginner.md)
+- [Lab 2 - Intermediate](week1/lab2_Intermediate.md)
