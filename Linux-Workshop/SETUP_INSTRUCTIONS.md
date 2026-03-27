@@ -4,6 +4,60 @@ This guide provides step-by-step instructions to manually create the infrastruct
 
 ---
 
+## Before You Begin: Create an AWS Account
+
+> Skip this section if you already have an AWS account.
+
+### Step 0a: Sign Up for AWS
+
+1. Go to [https://aws.amazon.com](https://aws.amazon.com)
+2. Click **Create an AWS Account**
+3. Enter your **email address** and choose an **AWS account name**
+4. Click **Verify email address** and enter the verification code sent to your email
+5. Create a **root user password** and click **Continue**
+
+### Step 0b: Enter Contact Information
+
+1. Select **Personal** or **Business** account type
+2. Fill in your full name, phone number, and address
+3. Read and accept the **AWS Customer Agreement**
+4. Click **Continue**
+
+### Step 0c: Add a Payment Method
+
+1. Enter a valid **credit or debit card**
+2. AWS will place a small temporary authorization hold (~$1) to verify the card
+3. Click **Verify and Continue**
+
+> **Note**: This workshop uses free tier eligible resources. You will not be charged if you stay within free tier limits and clean up resources when done.
+
+### Step 0d: Verify Your Identity
+
+1. Choose **Text message (SMS)** or **Voice call**
+2. Enter your phone number and click **Send SMS**
+3. Enter the verification code received
+4. Click **Continue**
+
+### Step 0e: Choose a Support Plan
+
+1. Select **Basic support - Free**
+2. Click **Complete sign up**
+3. You will see a confirmation page — your account may take a few minutes to activate
+4. You will receive a confirmation email when your account is ready
+
+### Step 0f: Sign In to the AWS Console
+
+1. Go to [https://console.aws.amazon.com](https://console.aws.amazon.com)
+2. Click **Sign in as Root User**
+3. Enter your email and password
+4. You are now in the AWS Management Console
+
+> **Security Tip**: After signing in, set up **Multi-Factor Authentication (MFA)** on your root account:
+> - Go to **IAM** → **Dashboard** → **Add MFA for root user**
+> - Follow the prompts to link an authenticator app (e.g. Google Authenticator)
+
+---
+
 ## Overview
 
 You will create:
@@ -91,13 +145,13 @@ You will create:
    - **Description**: `Security group for Linux Server`
    - **VPC**: Select `Devops-Detroit-VPC`
 4. **Inbound rules** → Click **Add rule** (twice):
-   
+
    **Rule 1:**
    - **Type**: SSH
    - **Protocol**: TCP
    - **Port range**: 22
    - **Source**: `0.0.0.0/0` (or your IP for better security)
-   
+
    **Rule 2:**
    - **Type**: HTTP
    - **Protocol**: TCP
@@ -114,20 +168,20 @@ You will create:
 
 1. Go to **EC2 Dashboard** → Click **Launch Instance**
 2. Configure:
-   
+
    **Name and tags:**
    - **Name**: `Linux_Server`
-   
+
    **Application and OS Images:**
    - Choose **Amazon Linux 2023** (or your preferred Linux AMI)
-   
+
    **Instance type:**
    - Select **t2.micro** (free tier eligible)
-   
+
    **Key pair:**
    - Select existing key pair or create new one
    - **Important**: Download and save the .pem file securely
-   
+
    **Network settings:**
    - Click **Edit**
    - **VPC**: Select `Devops-Detroit-VPC`
@@ -135,7 +189,7 @@ You will create:
    - **Auto-assign public IP**: Enable
    - **Firewall (security groups)**: Select existing security group
    - Choose `Linux-Server-SG`
-   
+
    **Storage:**
    - Leave default (8 GB gp3)
 
@@ -181,10 +235,6 @@ When you're done testing, delete resources in this order to avoid charges:
 4. **Detach and Delete Internet Gateway**
 5. **Delete Subnet**
 6. **Delete VPC**
-
-## Step 7
-
- Run x commands
 
 ---
 
