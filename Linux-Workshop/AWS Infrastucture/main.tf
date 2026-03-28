@@ -34,6 +34,7 @@ module "EC2" {
     public_subnet_id = module.Network.public_subnet_id
     vpc_id = module.Network.vpc_id
     sg_ports = ["22", "80"]
+    key_pair_name = "Devops-Detroit-Linux-Workshop"
 
 
 
