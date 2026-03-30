@@ -7,10 +7,8 @@ terraform {
   }
 }
 
-resource "aws_key_pair" "key_pair" {
-    key_name = "developer-key"
-    public_key = file("~/.ssh/id_rsa.pub")
-  
+data "aws_key_pair" "key_pair" {
+    key_name = var.key_pair_name
 }
 
 data "aws_iam_role" "SSM_role" {
@@ -23,11 +21,12 @@ resource "aws_iam_instance_profile" "instance_profile" {
   
 }
 resource "aws_instance" "EC2_instance" {
-  ami                     = "ami-0a232144cf20a27a5"
+  ami                     = "ami-0b75f821522bcff85"
   instance_type           = "t2.micro"
   associate_public_ip_address = true
   subnet_id = var.public_subnet_id
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
+  key_name             = data.aws_key_pair.key_pair.key_name
   security_groups = [ aws_security_group.EC2_SG.id]
 
   depends_on = [ var.public_subnet_id ]
