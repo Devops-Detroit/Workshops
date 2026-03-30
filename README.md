@@ -1,4 +1,4 @@
-# Linux Master Class Workshop - DevOps Detroit
+# Linux Master Class Workshop - DevOps Detroit x Detroit Hacker House
 
 Welcome to the DevOps Detroit Linux Workshop!
 
