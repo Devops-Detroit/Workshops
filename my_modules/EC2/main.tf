@@ -21,18 +21,34 @@ resource "aws_iam_instance_profile" "instance_profile" {
   
 }
 resource "aws_instance" "EC2_instance" {
-  ami                     = "ami-0b75f821522bcff85"
-  instance_type           = "t2.micro"
+  ami                         = "ami-0b75f821522bcff85"
+  instance_type               = "t2.micro"
   associate_public_ip_address = true
-  subnet_id = var.public_subnet_id
-  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
-  key_name             = data.aws_key_pair.key_pair.key_name
-  security_groups = [ aws_security_group.EC2_SG.id]
+  subnet_id                   = var.public_subnet_id
+  iam_instance_profile        = aws_iam_instance_profile.instance_profile.name
+  key_name                    = data.aws_key_pair.key_pair.key_name
+  security_groups             = [aws_security_group.EC2_SG.id]
 
-  depends_on = [ var.public_subnet_id ]
+  depends_on = [var.public_subnet_id]
   tags = {
-    "Name":var.instance_name
+    "Name" : var.instance_name
   }
+}
+
+resource "aws_ebs_volume" "extra_volume" {
+  availability_zone = var.availability_zone
+  size              = var.ebs_volume_size
+  type              = "gp3"
+  encrypted         = true
+  tags = {
+    "Name" : "${var.instance_name}-ebs"
+  }
+}
+
+resource "aws_volume_attachment" "ebs_attachment" {
+  device_name = "/dev/xvdf"
+  volume_id   = aws_ebs_volume.extra_volume.id
+  instance_id = aws_instance.EC2_instance.id
 }
 
 
