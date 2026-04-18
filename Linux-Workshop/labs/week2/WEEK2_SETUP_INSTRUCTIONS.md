@@ -207,31 +207,26 @@ sudo mkdir /data
 # Mount the volume
 sudo mount /dev/xvdf /data
 
+#Ensure that volume mount remains persitant through a reboot 
+
+echo '/dev/xvdf /data ext4 defaults,nofail 0 0' | sudo tee -a /etc/fstab
+
+
+#Check fstab entry
+
+vi /etc/fstab
+
 # Verify it is mounted
 df -h
-```
 
----
+# Fill up usable space with a large file
+
+fallocate -l 5G testfile
+
 
 ## Cleanup Instructions
 
-Delete resources in this order to avoid charges:
-
-1. **Unmount and detach EBS volume** from instance
-2. **Delete EBS volume**
-3. **Terminate EC2 instance**
-4. **Delete Security Group**
-5. **Delete Route Table** (custom one only)
-6. **Detach and Delete Internet Gateway**
-7. **Delete Subnet**
-8. **Delete VPC**
-
----
-
-## Cost Considerations
-
-| Resource | Cost |
-|---|---|
+Delete resources in this order p;l 
 | EC2 t2.micro | Free tier: 750 hrs/month |
 | EBS gp3 20GB | Free tier: 30 GB/month |
 | VPC, Subnet, IGW | Free |
