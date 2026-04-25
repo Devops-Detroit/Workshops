@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket  = "cloud-pathway-terraformstate-webbase"
-    key     = "week2.tfstate"
+    key     = "week3.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
@@ -24,11 +24,12 @@ module "Network" {
 
 module "EC2" {
   source            = "../../../my_modules/EC2"
-  instance_name     = "Linux_Server"
+  instance_name     = "Linux_Web_Server"
   public_subnet_id  = module.Network.public_subnet_id
   vpc_id            = module.Network.vpc_id
   sg_ports          = ["22", "80"]
   key_pair_name     = "Devops-Detroit-Linux-Workshop"
   availability_zone = "us-east-1a"
-
+  ebs_volume_size   = 20
+  enable_user_data  = true
 }
