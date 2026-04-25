@@ -110,10 +110,11 @@ The User Data script runs automatically when the instance first boots. It instal
 
 ```bash
 #!/bin/bash
-yum update -y
-yum install -y nginx
+apt update -y
+apt install -y nginx
 
-cat <<'EOF' > /usr/share/nginx/html/index.html
+cat <<'EOF' > /var/www/html/index.nginx-debian.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
