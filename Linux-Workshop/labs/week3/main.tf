@@ -31,5 +31,5 @@ module "EC2" {
   key_pair_name     = "Devops-Detroit-Linux-Workshop"
   availability_zone = "us-east-1a"
   ebs_volume_size   = 20
-  enable_user_data  = true
+
 }
