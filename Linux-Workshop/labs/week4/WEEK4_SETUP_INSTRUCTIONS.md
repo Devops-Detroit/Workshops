@@ -227,7 +227,7 @@ systemctl start nginx
 1. Go to **AWS Console** → Search for **Route 53** and open the service
 2. In the left menu click **Health checks** → Click **Create health check**
 
-   **Primary Health Check:**
+   **Primary Health Check:*
    - **Name**: `primary-health-check`
    - **What to monitor**: Endpoint
    - **Protocol**: HTTP
