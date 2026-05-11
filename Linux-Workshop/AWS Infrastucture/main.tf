@@ -35,7 +35,7 @@ module "EC2" {
     vpc_id = module.Network.vpc_id
     sg_ports = ["22", "80"]
     key_pair_name = "Devops-Detroit-Linux-Workshop"
-
+    availability_zone = "us-east-1a"
 
 
   
